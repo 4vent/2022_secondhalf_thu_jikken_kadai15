@@ -87,6 +87,8 @@ function collisionCheck(map, pos) {
 }
 
 var map, floors, walls
+var diff = 1
+
 /**
  * 
  * @param {Game} game 
@@ -94,9 +96,6 @@ var map, floors, walls
  * @param {Mase} mase 
  * @returns {Promise<[THREE.Vector3, THREE.Vector3]>} [start_pos, goal_pos]
  */
-
-var diff = 1
-
 function nextStage(game, robot, mase) {
     /** @type {THREE.Vector3} */
     var rob_start_pos;
@@ -107,6 +106,7 @@ function nextStage(game, robot, mase) {
         enableFloor = true;
         robot.stand();
         diff += 1;
+        div_mapsize.textContent = diff + ' x ' + diff;
         [map, walls, floors] = mase.loadMapFromText(generate_mase_text(diff, diff, 3));
         for (var z = 0; z < map.length; z++) {
             for (var x = 0; x < map[z].length; x++) {
@@ -144,12 +144,17 @@ function nextStage(game, robot, mase) {
 var enableFloor = true
 var next_loading = false
 
+var div_goal_distance = document.getElementById('goal-distance');
+var div_mapsize = document.getElementById('mapsize');
+
 async function init() {
-    
     const game = new Game(C.WIDTH, C.HEIGHT);
     const robot = new Robot();
     const mase = new Mase(game.scene);
     const camera_offset = new T.Vector3(0, 30, 0);
+
+    div_goal_distance = document.getElementById('goal-distance');
+    div_mapsize = document.getElementById('mapsize');
 
     await robot.loadBody('robot.json'); // fix
 
@@ -276,6 +281,12 @@ async function init() {
     var cam_focus_pos;
 
     async function Update() {
+        if (robot.model.o.position.y == -0.1) {
+            div_goal_distance.textContent = Math.floor(rob_goal_pos.distanceTo(robot.model.o.position)).toString();
+        } else {
+            div_goal_distance.textContent = '---'
+        }
+
         // robot.model.o.rotateY(0.01);
         cam_focus_pos = camera_offset.clone().add(robot.model.o.position)
         game.camera_focus_to(camera_offset.clone().add(robot.model.o.position), 300, Math.PI / 3);
