@@ -1,0 +1,158 @@
+{
+    "type": "Group",
+    "children": {
+        "body": {
+            "type": "Group",
+            "posision": [0, 12, 0],
+            "children": {
+                "spine": {
+                    "type": "Mesh",
+                    "geometry": "Box",
+                    "args": [12, 18, 12],
+                    "posision": [0, 9, 0],
+                    "material": "Body",
+                    "children": {
+                        "head": {
+                            "type": "Group",
+                            "posision": [0, 9, 0],
+                            "children": {
+                                "base": {
+                                    "type": "Mesh",
+                                    "geometry": "Box",
+                                    "args": [20, 16, 16],
+                                    "posision": [0, 8, 0],
+                                    "material": "Body",
+                                    "children": {
+                                        "eye_l": {
+                                            "type": "Mesh",
+                                            "geometry": "Sphere",
+                                            "args": [1.5, 16, 12],
+                                            "posision": [5, 3, -8],
+                                            "material": "FaceParts"
+                                        },
+                                        "eye_r": {
+                                            "type": "Mesh",
+                                            "geometry": "Sphere",
+                                            "args": [1.5, 16, 12],
+                                            "posision": [-5, 3, -8],
+                                            "material": "FaceParts"
+                                        },
+                                        "moouse": {
+                                            "type": "Mesh",
+                                            "geometry": "Cylinder",
+                                            "args": [2, 2, 1, 3],
+                                            "posision": [0, -3, -8],
+                                            "rotation": [1.57079632679, 3.14159265359, 0],
+                                            "material": "FaceParts"
+                                        },
+                                        "ear_l": {
+                                            "type": "Mesh",
+                                            "geometry": "Cylinder",
+                                            "args": [5, 0, 10, 10],
+                                            "posision": [14, 0, 0],
+                                            "rotation": [0, 0, 1.57079632679],
+                                            "material": "Ear"
+                                        },
+                                        "ear_r": {
+                                            "type": "Mesh",
+                                            "geometry": "Cylinder",
+                                            "args": [5, 0, 10, 10],
+                                            "posision": [-14, 0, 0],
+                                            "rotation": [0, 0, -1.57079632679],
+                                            "material": "Ear"
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                        "arm_l": {
+                            "type": "Group",
+                            "posision": [-6, 8, 0],
+                            "children": {
+                                "upperarm_l": {
+                                    "type": "Mesh",
+                                    "geometry": "Box",
+                                    "args": [6, 14, 6],
+                                    "posision": [-3, -7, 0],
+                                    "material": "Body"
+                                }
+                            }
+                        },
+                        "arm_r": {
+                            "type": "Group",
+                            "posision": [6, 8, 0],
+                            "children": {
+                                "upperarm_r": {
+                                    "type": "Mesh",
+                                    "geometry": "Box",
+                                    "args": [6, 14, 6],
+                                    "posision": [3, -7, 0],
+                                    "material": "Body"
+                                }
+                            }
+                        },
+                        "lid_front": {
+                            "type": "Mesh",
+                            "geometry": "Box",
+                            "args": [12, 0.5, 6],
+                            "posision": [0, -11, -8],
+                            "rotation": [-1.0471975512, 0, 0],
+                            "material": "Body"
+                        },
+                        "lid_back": {
+                            "type": "Mesh",
+                            "geometry": "Box",
+                            "args": [12, 0.5, 6],
+                            "posision": [0, -11, 8],
+                            "rotation": [1.0471975512, 0, 0],
+                            "material": "Body"
+                        },
+                        "lid_left": {
+                            "type": "Mesh",
+                            "geometry": "Box",
+                            "args": [6, 0.5, 12],
+                            "posision": [-8, -11, 0],
+                            "rotation": [0, 0, 1.0471975512],
+                            "material": "Body"
+                        },
+                        "lid_right": {
+                            "type": "Mesh",
+                            "geometry": "Box",
+                            "args": [6, 0.5, 12],
+                            "posision": [8, -11, 0],
+                            "rotation": [0, 0, -1.0471975512],
+                            "material": "Body"
+                        }
+                    }
+                }
+            }
+        },
+        "thigh_l": {
+            "type": "Group",
+            "posision": [-3, 12, 0],
+            "children": {
+                "calf_l": {
+                    "type": "Mesh",
+                    "geometry": "Box",
+                    "args": [6, 12, 6],
+                    "posision": [0, -6, 0],
+                    "material": "Body"
+                }
+            }
+        },
+        "thigh_r": {
+            "type": "Group",
+            "posision": [3, 12, 0],
+            "children": {
+                "calf_r": {
+                    "type": "Mesh",
+                    "geometry": "Box",
+                    "args": [6, 12, 6],
+                    "posision": [0, -6, 0],
+                    "material": "Body"
+                }
+            }
+        }
+    }
+}
