@@ -151,7 +151,7 @@ async function init() {
     const mase = new Mase(game.scene);
     const camera_offset = new T.Vector3(0, 30, 0);
 
-    await robot.loadBody('2023_secondhalf_thu_jikken_kadai15/robot.json');
+    await robot.loadBody('robot.json');
 
     var [rob_start_pos, rob_goal_pos] = await nextStage(game, robot, mase)
 
