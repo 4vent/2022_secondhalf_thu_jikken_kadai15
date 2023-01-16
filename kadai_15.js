@@ -4,7 +4,7 @@ import { VectorEase } from "./ease.js"
 import * as C from "./const_value.js"
 
 const T = THREE
-
+//
 var isWalking = false;
 var animationPhase = 0;
 var robo_direction = 0;
