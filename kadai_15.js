@@ -5,6 +5,12 @@ import * as C from "./const_value.js"
 
 const T = THREE
 
+var isWalking = false;
+var animationPhase = 0;
+var robo_direction = 0;
+var hint_cam_phase = -1;
+var cam_focus_pos;
+
 class Game {
     /**
      * @param {Int} width 
@@ -37,10 +43,24 @@ class Game {
      * 
      * @param {THREE.Vector3} obj_pos 
      */
-    camera_focus_to(obj_pos, distance, angle) {
-        // const p = obj.position + new T.Vector3(-Math.cos(angle) * distance, -Math.sin(angle) * distance, 0);
+    camera_focus_to(obj_pos, distance, angle, immediately) {
         const p = new T.Vector3(obj_pos.x, obj_pos.y + Math.sin(angle) * distance, obj_pos.z + Math.cos(angle) * distance)
-        this.camera.position.set(p.x, p.y, p.z);
+        console.log(p.z)
+
+        if ((immediately == undefined || immediately == false)
+            && cam_state_toggle.checked
+            && hint_cam_phase == -1) {
+            this.camera.translateX((p.x - this.camera.position.x) / 10);
+            this.camera.translateZ((p.z - this.camera.position.z) / 5);
+        } else {
+            this.camera.position.setX(p.x);
+            this.camera.position.setZ(p.z);
+        }
+        this.camera.position.setY(p.y);
+
+        if (this.camera.position.z < obj_pos.z + (Math.cos(angle) * distance) / 3) {
+            this.camera.position.z = obj_pos.z + (Math.cos(angle) * distance) / 3
+        }
     }
 
     camera_lookat(obj_pos) {
@@ -146,6 +166,7 @@ var next_loading = false
 
 var div_goal_distance = document.getElementById('goal-distance');
 var div_mapsize = document.getElementById('mapsize');
+var cam_state_toggle = document.getElementById('cam-state-toggle');
 
 async function init() {
     const game = new Game(C.WIDTH, C.HEIGHT);
@@ -155,6 +176,7 @@ async function init() {
 
     div_goal_distance = document.getElementById('goal-distance');
     div_mapsize = document.getElementById('mapsize');
+    cam_state_toggle = document.getElementById('cam-state-toggle');
 
     await robot.loadBody('robot.json'); // fix
 
@@ -274,12 +296,6 @@ async function init() {
         isDash = event.shiftKey
     })
 
-    var isWalking = false;
-    var animationPhase = 0;
-    var robo_direction = 0;
-    var hint_cam_phase = -1;
-    var cam_focus_pos;
-
     async function Update() {
         if (robot.model.o.position.y == -0.1) {
             div_goal_distance.textContent = Math.floor(rob_goal_pos.distanceTo(robot.model.o.position)).toString();
@@ -365,6 +381,7 @@ async function init() {
 
         if (enableFloor && rob_goal_pos.distanceTo(robot.model.o.position) < 15) {
             [rob_start_pos, rob_goal_pos] = await nextStage(game, robot, mase)
+            game.camera_focus_to(camera_offset.clone().add(robot.model.o.position), 300, Math.PI / 3, true);
         }
     }
 
