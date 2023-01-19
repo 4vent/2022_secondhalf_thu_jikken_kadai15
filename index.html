@@ -10,12 +10,14 @@
   <!-- <script src="sample2.js"></script> -->
 </head>
 <body>
-  <div style="position: absolute; background-color: #00000088; width: 200px;">
-    <div style="color: white;">現在のマップの大きさ</div><div id="mapsize" style="color: white;">2x2</div><br>
+  <div style="position: absolute; background-color: #00000088; font-size: 40px;">
+    <div style="color: white;" >現在のマップの大きさ</div><div id="mapsize" style="color: white;">2x2</div><br>
     <div style="color: white;">ゴールまでの距離</div><div id="goal-distance" style="color: white;">---</div>
   </div>
+  <div style="position: absolute; background-color: #fff; left: 0; right: 0; bottom: 0; font-size: 40px;">
+    <div>WASD: 移動, Shift: ダッシュ, h: ヒント機能, Enter: スタート地点に戻る</div>
+    <div><input class="ui20-input_chk" id="cam-state-toggle" type="checkbox" checked><label class="ui20-ios_conf" for="ios_chk_01"></label>いい感じのカメラ（酔う人はオフに）</div>
+  </div>
   <canvas id="myCanvas"></canvas>
-  <div>WASD: 移動, Shift: ダッシュ, h: ヒント機能, Enter: スタート地点に戻る</div>
-  <div><input class="ui20-input_chk" id="cam-state-toggle" type="checkbox" checked><label class="ui20-ios_conf" for="ios_chk_01"></label>いい感じのカメラ（酔う人はオフに）</div>
 </body>
 </html>

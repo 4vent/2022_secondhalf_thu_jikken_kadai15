@@ -26,13 +26,19 @@ class Game {
         this.renderer = new T.WebGLRenderer({
             canvas: document.querySelector("#myCanvas"),
         });
-        this.renderer.setSize(this.width, this.height);
         this.renderer.setClearColor(0x44bbff);
     
         this.scene = new T.Scene();
 
         this.camera = new T.PerspectiveCamera(45, C.WIDTH / C.HEIGHT);
         this.camera.position.set(0, 0, +100);
+        this.setSize(this.width, this.height);
+    }
+
+    setSize(width, height) {
+        this.renderer.setSize(width, height);
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
     }
 
     render() {
@@ -384,6 +390,10 @@ async function init() {
             game.camera_focus_to(camera_offset.clone().add(robot.model.o.position), 300, Math.PI / 3, true);
         }
     }
+
+    new ResizeObserver(() => {
+        game.setSize(window.innerWidth - 30, window.innerHeight - 30);
+    }).observe(document.querySelector("body"));
 
     Update();
 }
