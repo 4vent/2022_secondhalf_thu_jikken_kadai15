@@ -51,7 +51,7 @@ class Game {
      */
     camera_focus_to(obj_pos, distance, angle, immediately) {
         const p = new T.Vector3(obj_pos.x, obj_pos.y + Math.sin(angle) * distance, obj_pos.z + Math.cos(angle) * distance)
-        console.log(p.z)
+        // console.log(p.z);
 
         if ((immediately == undefined || immediately == false)
             && cam_state_toggle.checked
